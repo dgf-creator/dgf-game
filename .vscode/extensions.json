@@ -1,0 +1,9 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "ripple-ts.ripple-ts-vscode-plugin",
+    "bradlc.vscode-tailwindcss",
+    "mike-north.vscode-tagged-templates"
+  ]
+}
