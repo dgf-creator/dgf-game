@@ -46,7 +46,7 @@ export const npcDetails: Record<Npc, NpcDetails> = {
   mom: {
     firstName: 'Leann',
     get lastName() {
-      return rootState.pc.lastName
+      return rootState.currentFrame.pc.lastName
     },
     sex: 'female',
     pronouns: femalePronouns,

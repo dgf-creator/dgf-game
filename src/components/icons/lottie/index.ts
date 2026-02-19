@@ -9,6 +9,7 @@ import locationData from './icons8-location.json'
 import lockData from './icons8-lock.json'
 import loveCircledData from './icons8-love-circled.json'
 import loveMessageData from './icons8-love-message.json'
+import mailData from './icons8-mail.json'
 import menuData from './icons8-menu.json'
 import musicRecordData from './icons8-music-record.json'
 import nextLocationData from './icons8-next-location.json'
@@ -124,6 +125,16 @@ export const icons = {
       start: 0,
       empty: 0,
       heart: 13,
+      end: 27,
+    },
+  },
+  mail: {
+    data: mailData,
+    frameCount: 28,
+    positions: {
+      start: 0,
+      closed: 0,
+      open: 13,
       end: 27,
     },
   },

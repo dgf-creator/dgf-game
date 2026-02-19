@@ -1,7 +1,8 @@
+import { rootState } from '@/state/root'
 import { cva } from 'class-variance-authority'
 
 const buttonVariants = cva(
-  'my-1 border-2 border-solid px-2 transition-all duration-200 hover:brightness-125 active:brightness-75 active:transition-none',
+  'my-1 rounded border-2 border-solid px-2 transition-all duration-200 hover:brightness-125 active:brightness-75 active:transition-none',
   {
     variants: {
       color: {
@@ -12,15 +13,15 @@ const buttonVariants = cva(
         4: 'border-[#93c5fd] bg-[#dbeafe] text-[#1e40af]',
       },
       rotate: {
-        0: '-rotate-2',
-        1: 'rotate-[0.5deg]',
-        2: '-rotate-[1.5deg]',
-        3: '-rotate-1',
-        4: 'rotate-0',
-        5: 'rotate-[1.5deg]',
-        6: '-rotate-[0.5deg]',
-        7: 'rotate-2',
-        8: '-rotate-1',
+        0: '-rotate-2 hover:rotate-[0.5deg]',
+        1: 'rotate-[0.5deg] hover:-rotate-[1.5deg]',
+        2: '-rotate-[1.5deg] hover:-rotate-1',
+        3: '-rotate-1 hover:rotate-0',
+        4: 'rotate-0 hover:rotate-[1.5deg]',
+        5: 'rotate-[1.5deg] hover:-rotate-[0.5deg]',
+        6: '-rotate-[0.5deg] hover:rotate-2',
+        7: 'rotate-2 hover:-rotate-1',
+        8: '-rotate-1 hover:-rotate-2',
       },
     },
   }
@@ -42,8 +43,17 @@ const generateHash = (val: string) => {
   }
   return Math.abs(hash)
 }
-export function ActionButton({ children, className, ...rest }: Props) {
+export function ActionButton({ linkTo, children, className, onClick, ...rest }: Props) {
   const hash = generateHash(children)
+
+  const handleClick =
+    onClick ??
+    ((ev: React.MouseEvent<HTMLButtonElement>) => {
+      if (linkTo) {
+        ev.preventDefault()
+        rootState.newFrame(linkTo)
+      }
+    })
 
   return (
     <button
@@ -52,6 +62,7 @@ export function ActionButton({ children, className, ...rest }: Props) {
         rotate: (hash % maxRotate) as 0,
         className,
       })}
+      onClick={handleClick}
       {...rest}
     >
       {children}

@@ -8,7 +8,7 @@ type TravelTimeOpts = {
 }
 
 const DEFAULT_TRAVEL_TIME_OPTS = (opts?: Partial<TravelTimeOpts>): TravelTimeOpts => ({
-  mode: opts?.mode ?? rootState.travelMode,
+  mode: opts?.mode ?? rootState.currentFrame.travelMode,
   round: opts?.round ?? true,
 })
 
@@ -30,7 +30,7 @@ export function getTravelTime(from: GameLocation, to: GameLocation, opts?: Parti
 }
 
 export function getCurrentTravelTime(destination: GameLocation, opts?: Partial<TravelTimeOpts>) {
-  return getTravelTime(rootState.playerLocation, destination, opts)
+  return getTravelTime(rootState.currentFrame.playerLocation, destination, opts)
 }
 
 export function travelTo(destination: GameLocation, opts?: Partial<TravelTimeOpts>) {
@@ -38,9 +38,9 @@ export function travelTo(destination: GameLocation, opts?: Partial<TravelTimeOpt
   const travelTime = getCurrentTravelTime(destination, opts) * 60
 
   addTime(travelTime, { isSunny: mode === 'walk' })
-  rootState.playerLocation = destination
+  rootState.currentFrame.playerLocation = destination
 
   if (mode === 'car') {
-    rootState.carLocation = destination
+    rootState.currentFrame.carLocation = destination
   }
 }

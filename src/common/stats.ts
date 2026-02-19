@@ -47,7 +47,7 @@ export function statDifficultyModifier(value: number) {
 export function getStatDifficultySum() {
   return stats
     .map((stat) => {
-      const modifier = statDifficultyModifier(rootState.pc[stat])
+      const modifier = statDifficultyModifier(rootState.currentFrame.pc[stat])
       return modifier * (statDetails[stat].difficultyModifier ?? 1)
     })
     .reduce((total, curr) => total + curr, 0)

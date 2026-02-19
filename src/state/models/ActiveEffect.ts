@@ -6,7 +6,7 @@ import { rootState } from '../root'
 export const ActiveEffect = t
   .model('ActiveEffect', {
     name: t.enumeration(effects),
-    startTime: t.optional(t.number, (): number => rootState.time),
+    startTime: t.optional(t.number, (): number => rootState.currentFrame.time),
     endTime: t.optional(t.maybeNull(t.number), null),
     strength: t.optional(t.number, 1),
   })
@@ -20,10 +20,10 @@ export const ActiveEffect = t
         willpower = 0,
       } = effectDetails[self.name].getModifiers?.({
         startTime: self.startTime,
-        timeSinceStart: rootState.time - self.startTime,
+        timeSinceStart: rootState.currentFrame.time - self.startTime,
 
         endTime: self.endTime,
-        timeRemaining: self.endTime === null ? null : self.endTime - rootState.time,
+        timeRemaining: self.endTime === null ? null : self.endTime - rootState.currentFrame.time,
         totalDuration: self.endTime === null ? null : self.endTime - self.startTime,
 
         strength: self.strength,

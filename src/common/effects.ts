@@ -48,7 +48,7 @@ export const effectDetails: Record<Effect, EffectDetails> = {
     actionDescription: 'Drop acid',
     defaultDuration: 12 * 60 * 60,
     onTimeChange({ deltaTime, timeSinceStart, timeRemaining, totalDuration, strength }) {
-      const pc = rootState.pc
+      const pc = rootState.currentFrame.pc
       const hours = deltaTime / (60 * 60)
       const waitPeriod = 30 * 60 // time before you start to feel it
       const maximum = 2 * 60 * 60 // time at which the effects are strongest
@@ -78,7 +78,7 @@ export const effectDetails: Record<Effect, EffectDetails> = {
       timeRemaining ??= 1
       totalDuration ??= 1
 
-      const pc = rootState.pc
+      const pc = rootState.currentFrame.pc
       const hours = deltaTime / (60 * 60)
 
       pc.horniness += (hours * strength * (timeRemaining / totalDuration)) / pc.willpowerFactor

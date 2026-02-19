@@ -130,7 +130,7 @@ export const PlayerCharacter = setupPublicViews(
     set pregnant(value) {
       self.__pregnant = value
       if (value && self.__pregnantAt === null) {
-        self.__pregnantAt = rootState.time
+        self.__pregnantAt = rootState.currentFrame.time
       } else if (!value) {
         self.__pregnantAt = null
       }

@@ -1,23 +1,34 @@
 import { markdown } from './common/markdown'
 import { ActionButton } from './components/ActionButton'
-import { IconButton } from './components/IconButton'
+import { Block } from './components/Block'
+// import { IconButton } from './components/IconButton'
 
 function App() {
   return (
     <div className='flex flex-col items-center'>
+      {/* Left margin line */}
+      <div className='vertical-rule' />
       {markdown`
-# Testing buttons
-----------------------------------
-_foo_ **bar**
+        # Hello World
+        test
+        test
+        ${(
+          <Block color='pink' style='left-block'>
+            i took an action
+          </Block>
+        )}
+        ${(
+          <Block color='blue' style='rounded'>
+            then something spooooooky happened
+          </Block>
+        )}
+        ${(
+          <Block color='purple' style='rounded'>
+            then something spooooooky happened
+          </Block>
+        )}
 
-${(<ActionButton>hi, i am a button to be tested</ActionButton>)}
-  # asdf
-_test_
-${(
-  <IconButton icon='heart' iconPosition='left' size='small' iconSpeed={1} defaultIconState='start' hoverIconState='end'>
-    I am a button
-  </IconButton>
-)}
+        Then I decided it was time to ${(<ActionButton linkTo='/test'>reach my hand out</ActionButton>)} and touch his face
       `}
       <ActionButton>hi, i am a button to be tested</ActionButton>
       <ActionButton>you know, i am a button too</ActionButton>

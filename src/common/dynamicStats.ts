@@ -28,7 +28,7 @@ export const dynamicStatDetails: Record<DynamicStat, DynamicStatDetail> = {
     name: 'Vaginal pain',
     description: 'How sore your pussy is',
     describeStatus(vaginalPain) {
-      // const pc = rootState.pc
+      // const pc = rootState.currentFrame.pc
       // const hymenTorn = pc.hasActiveEffect('deflowered') && !pc.thinkVirgin
       if (vaginalPain < 10) {
         return 'Your pussy feels fine'
@@ -123,7 +123,7 @@ export const dynamicStatDetails: Record<DynamicStat, DynamicStatDetail> = {
     name: 'Desperation',
     description: 'How desperate you are to have sex',
     describeStatus(desperation) {
-      const virgin = rootState.pc.thinkVirgin
+      const virgin = rootState.currentFrame.pc.thinkVirgin
 
       if (desperation < 10) {
         return `You're an absolute prude, and proud of it`
@@ -256,7 +256,7 @@ export const dynamicStatDetails: Record<DynamicStat, DynamicStatDetail> = {
     name: 'Pregnancy chance',
     description: 'Approximately how likely you are to fall pregnant in the next few days',
     describeStatus(pregChance) {
-      const pc = rootState.pc
+      const pc = rootState.currentFrame.pc
 
       if (pregChance === 0) {
         if (pc.thinkVirgin) {

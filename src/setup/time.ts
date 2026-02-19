@@ -4,7 +4,7 @@ import { calculateNewPregnancyChance, calculatePregnancyProbability } from './pr
 import { random } from '@/common/random'
 import { rootState } from '@/state/root'
 
-export function printWeekday(time = rootState.time) {
+export function printWeekday(time = rootState.currentFrame.time) {
   const day = Math.floor(time / (24 * 60 * 60))
 
   return weekdays[day % 7]
@@ -12,7 +12,7 @@ export function printWeekday(time = rootState.time) {
 
 const juneStart = 11
 const juneDays = 30
-export function printDate(time = rootState.time) {
+export function printDate(time = rootState.currentFrame.time) {
   const day = Math.floor(time / (24 * 60 * 60))
   const month = day + juneStart <= juneDays ? 'June' : 'July'
   const date = ((day + juneStart + juneDays - 1) % juneDays) + 1
@@ -20,7 +20,7 @@ export function printDate(time = rootState.time) {
   return `${month} ${date}`
 }
 
-export function printTime(time = rootState.time) {
+export function printTime(time = rootState.currentFrame.time) {
   let minutes = (Math.floor(time / 60) % 60).toString(10)
   if (minutes.length < 2) minutes = `0${minutes}`
 
@@ -32,7 +32,7 @@ export function printTime(time = rootState.time) {
   return `${hours}:${minutes} ${hoursNum >= 12 ? 'PM' : 'AM'}`
 }
 
-export function isDaytime(time = rootState.time) {
+export function isDaytime(time = rootState.currentFrame.time) {
   const hour = (time / (60 * 60)) % 24
 
   return hour >= 7 && hour <= 20
@@ -57,7 +57,7 @@ type AddTimeOpts = {
 
 export const DEFAULT_TIME_FRAME_SIZE = 5 * 60 // 5 minutes
 const DEFAULT_ADD_TIME_OPTS = (opts?: Partial<AddTimeOpts>): AddTimeOpts => {
-  const location = opts?.location ?? rootState.playerLocation
+  const location = opts?.location ?? rootState.currentFrame.playerLocation
 
   return {
     location,
@@ -90,12 +90,12 @@ const processTime = action((deltaTime: number, opts?: Partial<AddTimeOpts>) => {
     tickEffects,
   } = DEFAULT_ADD_TIME_OPTS(opts)
   const hours = deltaTime / (60 * 60)
-  const pc = rootState.pc
+  const pc = rootState.currentFrame.pc
 
   const willpowerFactor = pc.willpowerFactor
 
-  const prevTime = rootState.time
-  rootState.time = prevTime + deltaTime
+  const prevTime = rootState.currentFrame.time
+  rootState.currentFrame.time = prevTime + deltaTime
 
   if (addHorniness) {
     const horninessMult = (() => {
@@ -165,7 +165,7 @@ const processTime = action((deltaTime: number, opts?: Partial<AddTimeOpts>) => {
           strength: effect.strength,
         })
 
-        if (result?.done || (effect.endTime !== null && effect.endTime <= rootState.time)) {
+        if (result?.done || (effect.endTime !== null && effect.endTime <= rootState.currentFrame.time)) {
           pc.removeEffect(effect)
         } else {
           if (result?.endTime !== undefined) {

@@ -1,18 +1,34 @@
-import { cva } from 'class-variance-authority'
+import { cva, type VariantProps } from 'class-variance-authority'
 
-const cardStyles = cva('px-3 py-2', {
+const cardStyles = cva('my-1 block px-3 py-2', {
   variants: {
     color: {
-      0: 'border-(--block-0-border) bg-(--block-0) text-(--block-0-foreground)',
-      1: 'border-(--block-1-border) bg-(--block-1) text-(--block-1-foreground)',
+      blue: 'border-(--block-blue-border) bg-(--block-blue) text-(--block-blue-foreground)',
+      pink: 'border-(--block-pink-border) bg-(--block-pink) text-(--block-pink-foreground)',
+      purple: 'border-(--block-purple-border) bg-(--block-purple) text-(--block-purple-foreground)',
     },
     style: {
       'left-block': 'rounded-none border-l-2',
       rounded: 'rounded-lg',
     },
   },
+  defaultVariants: {
+    color: 'pink',
+    style: 'rounded',
+  },
 })
 
-export function Block({ children }: { children: React.ReactNode }) {
-  return <div className='px-3 py-2'>{children}</div>
+type Variants = VariantProps<typeof cardStyles>
+
+type Props = React.ComponentProps<'span'> & {
+  color?: Variants['color']
+  style?: Variants['style']
+}
+
+export function Block({ color, style, children, className, ...rest }: Props) {
+  return (
+    <span className={cardStyles({ color, style, className })} {...rest}>
+      {children}
+    </span>
+  )
 }

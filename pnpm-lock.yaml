@@ -23,9 +23,18 @@ importers:
       mobx:
         specifier: ^6.15.0
         version: 6.15.0
+      mobx-devtools-mst:
+        specifier: ^0.9.46
+        version: 0.9.46(mobx-state-tree@7.0.2(mobx@6.15.0)(typescript@5.9.3))(mobx@6.15.0)
+      mobx-react-lite:
+        specifier: ^4.1.1
+        version: 4.1.1(mobx@6.15.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       mobx-state-tree:
         specifier: ^7.0.2
         version: 7.0.2(mobx@6.15.0)(typescript@5.9.3)
+      nanoid:
+        specifier: ^5.1.6
+        version: 5.1.6
       prettier:
         specifier: ^3.8.1
         version: 3.8.1
@@ -1395,6 +1404,25 @@ packages:
     resolution: {integrity: sha512-G6T0ZX48xgozx7587koeX9Ys2NYy6Gmv//P89sEte9V9whIapMNF4idKxnW2QtCcLiTWlb/wfCabAtAFWhhBow==}
     engines: {node: '>=16 || 14 >=14.17'}
 
+  mobx-devtools-mst@0.9.46:
+    resolution: {integrity: sha512-MqY4JzUf1Pkyd6NrperRUoohCHSDrNGiqjg2ejpG8ZJPfBIDGCBvfdGsa2LbJnlkpf8lmaiO3ycFssVjdcu6Cw==}
+    peerDependencies:
+      mobx: ^2.2.0 || ^3.0.0 || ^4.0.0 || ^5.0.0 || ^6.0.0
+      mobx-state-tree: '*'
+
+  mobx-react-lite@4.1.1:
+    resolution: {integrity: sha512-iUxiMpsvNraCKXU+yPotsOncNNmyeS2B5DKL+TL6Tar/xm+wwNJAubJmtRSeAoYawdZqwv8Z/+5nPRHeQxTiXg==}
+    peerDependencies:
+      mobx: ^6.9.0
+      react: ^16.8.0 || ^17 || ^18 || ^19
+      react-dom: '*'
+      react-native: '*'
+    peerDependenciesMeta:
+      react-dom:
+        optional: true
+      react-native:
+        optional: true
+
   mobx-state-tree@7.0.2:
     resolution: {integrity: sha512-Qmqgo2Ho1/JRTquo0EWw0ZA/k4wTUNPMIBg98ALGN1V/0Gupic7dg4GDYUhNbiLsYHpp48VgpaCDpDIKV+jNkQ==}
     peerDependencies:
@@ -1409,6 +1437,11 @@ packages:
   nanoid@3.3.11:
     resolution: {integrity: sha512-N8SpfPUnUp1bK+PMYW8qSWdl9U+wwNWI4QKxOYDy9JAro3WMX7p2OeVRF9v+347pnakNevPmiHhNmZ2HbFA76w==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
+    hasBin: true
+
+  nanoid@5.1.6:
+    resolution: {integrity: sha512-c7+7RQ+dMB5dPwwCp4ee1/iV/q2P6aK1mTZcfr1BTuVlyW9hJYiMPybJCcnBlQtuSmTIWNeazm/zqNoZSSElBg==}
+    engines: {node: ^18 || >=20}
     hasBin: true
 
   natural-compare@1.4.0:
@@ -1696,6 +1729,11 @@ packages:
 
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
+
+  use-sync-external-store@1.6.0:
+    resolution: {integrity: sha512-Pp6GSwGP/NrPIrxVFAIkOQeyw8lFenOHijQWkUTrDvrF4ALqylP2C/KCkeS9dpUM3KvYRQhna5vt7IL95+ZQ9w==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   vite-plugin-singlefile@2.3.0:
     resolution: {integrity: sha512-DAcHzYypM0CasNLSz/WG0VdKOCxGHErfrjOoyIPiNxTPTGmO6rRD/te93n1YL/s+miXq66ipF1brMBikf99c6A==}
@@ -2956,6 +2994,19 @@ snapshots:
     dependencies:
       brace-expansion: 2.0.2
 
+  mobx-devtools-mst@0.9.46(mobx-state-tree@7.0.2(mobx@6.15.0)(typescript@5.9.3))(mobx@6.15.0):
+    dependencies:
+      mobx: 6.15.0
+      mobx-state-tree: 7.0.2(mobx@6.15.0)(typescript@5.9.3)
+
+  mobx-react-lite@4.1.1(mobx@6.15.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4):
+    dependencies:
+      mobx: 6.15.0
+      react: 19.2.4
+      use-sync-external-store: 1.6.0(react@19.2.4)
+    optionalDependencies:
+      react-dom: 19.2.4(react@19.2.4)
+
   mobx-state-tree@7.0.2(mobx@6.15.0)(typescript@5.9.3):
     dependencies:
       mobx: 6.15.0
@@ -2968,6 +3019,8 @@ snapshots:
   ms@2.1.3: {}
 
   nanoid@3.3.11: {}
+
+  nanoid@5.1.6: {}
 
   natural-compare@1.4.0: {}
 
@@ -3188,6 +3241,10 @@ snapshots:
   uri-js@4.4.1:
     dependencies:
       punycode: 2.3.1
+
+  use-sync-external-store@1.6.0(react@19.2.4):
+    dependencies:
+      react: 19.2.4
 
   vite-plugin-singlefile@2.3.0(rollup@4.57.1)(vite@8.0.0-beta.14(@types/node@24.10.13)(esbuild@0.27.3)(jiti@2.6.1)(tsx@4.21.0)):
     dependencies:

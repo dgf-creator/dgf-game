@@ -12,13 +12,17 @@ body {
   --background: #f6cde5;
   --foreground: #6b2fa0;
 
-  --block-0: rgb(255 107 175 / 0.08);
-  --block-0-foreground: #8b2080;
-  --block-0-border: #ff6baf;
+  --block-pink: rgb(255 107 175 / 0.08);
+  --block-pink-foreground: #8b2080;
+  --block-pink-border: #ff6baf;
 
-  --block-1: rgb(124 58 237 / 0.04);
-  --block-1-foreground: #5b21b6;
-  --block-1-border: #7729f5;
+  --block-blue: rgb(124 58 237 / 0.06);
+  --block-blue-foreground: #5b21b6;
+  --block-blue-border: #7729f5;
+
+  --block-purple: rgba(141, 16, 225, 0.06);
+  --block-purple-foreground: #75168a;
+  --block-purple-border: #af14d2;
 
   --primary: #fff0f5;
   --primary-foreground: #c2185b;
@@ -122,6 +126,16 @@ body {
     var(--paper-line) 32px
   );
   background-position: 0 8px;
+}
+
+@utility vertical-rule {
+  position: fixed;
+  left: 5vw;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  pointer-events: none;
+  background-color: var(--paper-line);
 }
 
 @layer components {
