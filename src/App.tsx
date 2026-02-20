@@ -1,9 +1,13 @@
+import { useState } from 'react'
 import { markdown } from './common/markdown'
 import { ActionButton } from './components/ActionButton'
 import { Block } from './components/Block'
-// import { IconButton } from './components/IconButton'
+import { IconButton } from './components/IconButton'
+import { ToggleIconButton } from './components/ToggleIconButton'
 
 function App() {
+  const [foo, setFoo] = useState(false)
+
   return (
     <div className='flex flex-col items-center'>
       {/* Left margin line */}
@@ -36,6 +40,17 @@ function App() {
       <ActionButton>is there room for another button in here?</ActionButton>
       <ActionButton>i hope im not too late</ActionButton>
       <ActionButton>im the last one, i swear</ActionButton>
+      <IconButton icon='heart' defaultIconState='start' hoverIconState='end' size='small'>
+        you've got mail!
+      </IconButton>
+      <ToggleIconButton
+        icon='menu'
+        on={foo}
+        onToggle={setFoo}
+        defaultIconState='menu'
+        toggledIconState='close'
+        size='xLarge'
+      />
     </div>
   )
 }

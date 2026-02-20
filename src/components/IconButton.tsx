@@ -19,7 +19,6 @@ const buttonVariants = cva(
         medium: 'px-4 py-2 text-base',
         large: 'px-6 py-3 text-lg',
       },
-      // `boolean` variants are also supported!
       disabled: {
         false: null,
         true: 'cursor-not-allowed opacity-50',
@@ -36,8 +35,8 @@ const buttonVariants = cva(
 const iconVariants = cva('h-[1.5em] w-[1.5em]', {
   variants: {
     position: {
-      left: 'mr-[0.5em] -ml-[0.5em]',
-      right: '-mr-[0.5em] ml-[0.5em]',
+      left: 'mr-[0.5em]',
+      right: 'ml-[0.5em]',
     },
   },
 })
